@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => env('APP_URL', 'http://sfc.sungroup.co.th:8084/qa_checklist'),
 
     /*
     |--------------------------------------------------------------------------

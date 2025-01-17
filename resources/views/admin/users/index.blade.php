@@ -1,84 +1,80 @@
 <x-app-layout>
     @if (auth()->user() && auth()->user()->role_id == 1)
-        <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        {{-- <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                    <div class="container mx-auto p-4">
-                        <!-- Flexbox for alignment -->
-                        <div class="flex justify-end mb-4">
-                            {{-- <x-secondary-button class="me-3">
-                            {{ __('เพิ่ม User') }}
-                        </x-secondary-button> --}}
-                            <x-button type="button" onclick="openAuthenticationModal()">
-                                {{ __('เพิ่ม User') }}
-                            </x-button>
-                            {{-- <button type="button" data-modal-target="authentication-modal"
-                            data-modal-toggle="authentication-modal"
-                            class="text-white bg-[#050708] hover:bg-[#050708]/90 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#050708]/50 dark:hover:bg-[#050708]/30 me-2 mb-2">
-                            เพิ่ม User
-                        </button> --}}
-                        </div>
-                        <div class="overflow-x-auto">
-                            <table id="example" class="dataTable table-auto min-w-full text-sm text-black">
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                        <th>Role</th>
-                                        <th class="text-right">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($users as $user)
-                                        <tr>
-                                            <td>{{ $user->id }}</td>
-                                            <td>{{ $user->name }}</td>
-                                            <td>{{ $user->email }}</td>
-                                            <td>{{ $user->role_name }}</td>
-                                            <td class="text-right">
-                                                <!-- ปุ่มแก้ไข -->
-                                                <div class="flex justify-end ml-auto">
-                                                    <button class="mr-3"
-                                                        onclick="openEditUserModal({ id: {{ $user->id }}, name: '{{ $user->name }}', email: '{{ $user->email }}', role: '{{ $user->role_id }}' })">
-                                                        <svg class="w-6 h-6 text-gray-800 dark:text-green-600"
-                                                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                                            width="24" height="24" fill="currentColor"
-                                                            viewBox="0 0 24 24">
-                                                            <path fill-rule="evenodd"
-                                                                d="M5 8a4 4 0 1 1 7.796 1.263l-2.533 2.534A4 4 0 0 1 5 8Zm4.06 5H7a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h2.172a2.999 2.999 0 0 1-.114-1.588l.674-3.372a3 3 0 0 1 .82-1.533L9.06 13Zm9.032-5a2.907 2.907 0 0 0-2.056.852L9.967 14.92a1 1 0 0 0-.273.51l-.675 3.373a1 1 0 0 0 1.177 1.177l3.372-.675a1 1 0 0 0 .511-.273l6.07-6.07a2.91 2.91 0 0 0-.944-4.742A2.907 2.907 0 0 0 18.092 8Z"
-                                                                clip-rule="evenodd" />
-                                                        </svg>
-                                                    </button>
+        <div class="container mx-auto p-4"> --}}
+        <div class="flex justify-between items-center mb-4">
+            <h1 class="text-2xl font-bold text-gray-800">จัดการ User</h1>
+            <x-button type="button" onclick="openAuthenticationModal()">
+                {{ __('เพิ่ม User') }}
+            </x-button>
+        </div>
+        <!-- Flexbox for alignment -->
+        {{-- <div class="flex justify-end mb-4">
+                    <x-button type="button" onclick="openAuthenticationModal()">
+                        {{ __('เพิ่ม User') }}
+                    </x-button>
+                </div> --}}
+        <div class="overflow-x-auto sm:overflow-hidden">
+            <table id="example" class="dataTable table-auto min-w-full text-sm text-black">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th class="text-right">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($users as $user)
+                        <tr>
+                            <td>{{ $user->id }}</td>
+                            <td>{{ $user->name }}</td>
+                            <td>{{ $user->email }}</td>
+                            <td>{{ $user->role_name }}</td>
+                            <td class="text-right">
+                                <!-- ปุ่มแก้ไข -->
+                                <div class="flex justify-end ml-auto">
+                                    <button class="mr-3"
+                                        onclick="openEditUserModal({ id: {{ $user->id }}, name: '{{ $user->name }}', email: '{{ $user->email }}', role: '{{ $user->role_id }}' })">
+                                        <svg class="w-6 h-6 text-gray-800 dark:text-green-600" aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            fill="currentColor" viewBox="0 0 24 24">
+                                            <path fill-rule="evenodd"
+                                                d="M5 8a4 4 0 1 1 7.796 1.263l-2.533 2.534A4 4 0 0 1 5 8Zm4.06 5H7a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h2.172a2.999 2.999 0 0 1-.114-1.588l.674-3.372a3 3 0 0 1 .82-1.533L9.06 13Zm9.032-5a2.907 2.907 0 0 0-2.056.852L9.967 14.92a1 1 0 0 0-.273.51l-.675 3.373a1 1 0 0 0 1.177 1.177l3.372-.675a1 1 0 0 0 .511-.273l6.07-6.07a2.91 2.91 0 0 0-.944-4.742A2.907 2.907 0 0 0 18.092 8Z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                    </button>
 
-                                                    <form action="{{ route('UsersManage.destroy', $user->id) }}"
-                                                        method="POST" class="inline-block"
-                                                        id="delete-form-{{ $user->id }}" onsubmit="return false;">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="button" class="text-red-500 hover:underline"
-                                                            onclick="openDeleteModal({{ $user->id }})">
-                                                            <svg class="w-6 h-6 text-red-500 hover:text-red-600"
-                                                                aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                                                width="24" height="24" fill="currentColor"
-                                                                viewBox="0 0 24 24">
-                                                                <path fill-rule="evenodd"
-                                                                    d="M8.586 2.586A2 2 0 0 1 10 2h4a2 2 0 0 1 2 2v2h3a1 1 0 1 1 0 2v12a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V8a1 1 0 0 1 0-2h3V4a2 2 0 0 1 .586-1.414ZM10 6h4V4h-4v2Zm1 4a1 1 0 1 0-2 0v8a1 1 0 1 0 2 0v-8Zm4 0a1 1 0 1 0-2 0v8a1 1 0 1 0 2 0v-8Z"
-                                                                    clip-rule="evenodd" />
-                                                            </svg>
-                                                        </button>
-                                                    </form>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+                                    <form action="{{ route('UsersManage.destroy', $user->id) }}" method="POST"
+                                        class="inline-block" id="delete-form-{{ $user->id }}"
+                                        onsubmit="return false;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="button" class="text-red-500 hover:underline"
+                                            onclick="openDeleteModal({{ $user->id }})">
+                                            <svg class="w-6 h-6 text-red-500 hover:text-red-600" aria-hidden="true"
+                                                xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                fill="currentColor" viewBox="0 0 24 24">
+                                                <path fill-rule="evenodd"
+                                                    d="M8.586 2.586A2 2 0 0 1 10 2h4a2 2 0 0 1 2 2v2h3a1 1 0 1 1 0 2v12a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V8a1 1 0 0 1 0-2h3V4a2 2 0 0 1 .586-1.414ZM10 6h4V4h-4v2Zm1 4a1 1 0 1 0-2 0v8a1 1 0 1 0 2 0v-8Zm4 0a1 1 0 1 0-2 0v8a1 1 0 1 0 2 0v-8Z"
+                                                    clip-rule="evenodd" />
+                                            </svg>
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+        {{-- </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
     @endif
 </x-app-layout>
 
